@@ -1,0 +1,374 @@
+1(сортировка)
+MAIN
+1DARRAYOFUINT ar = [ 1,2,3,4,5,6 ]
+UINT n = 0
+UINT n1 = 0
+UINT n2 = 0
+UINT a = 0
+UINT b = 0
+UINT j = 0
+UINT i = 0
+WHILE ( n2 LT 5) DO
+{
+b = ar(n2)
+INC n2
+}
+n2=0
+WHILE ( n LT 4 ) DO
+{
+n1 = 0
+WHILE ( n1 LT 4 ) DO
+{
+IF( ar(n1) LT ar(n1+1) )
+{
+j = ar(n1)
+a=ar(n1+1)
+ar(n1)= a
+ar(n1+1) = j
+b=ar(n1+1)
+}
+n1 = n1 + 1
+}
+n = n + 1
+}
+WHILE ( n2 LT 5) DO
+{
+b = ar(n2)
+INC n2
+}
+END
+2(2 функции)
+[a1 = 0 , b1 = 0] FUNCTION func (a2=0,b2=0)
+{ UINT a1 = a2
+UINT b1 = b2
+[a1,b1]=func1(1,0)
+}
+[a1 = 0, b1 = 0] FUNCTION func1 (a2=0,b2=0)
+{ UINT a1 = a2 + 1
+}
+MAIN
+UINT a = 0
+UINT b = 0
+UINT c = 0
+[a,b] = func(1,2)
+c = a + b
+[a,b] = func(a,b)
+c = a + b
+END
+3(рекурсия)
+[a1 = 0 ] FUNCTION func (a2=0)
+{ UINT a1 = a2
+INC a1
+IF (a1 LT 5)
+[a1]=func(a1)
+}
+MAIN
+UINT a = 0
+[a] = func(a)
+END
+4(использование массива 1)
+MAIN
+1DARRAYOFUINT ar = [ 1,2,3,4,5,6 ]
+UINT n = 0
+UINT a = 0
+UINT b = 0
+WHILE (n LT SIZE1 ar) DO
+{
+b = ar(n) +1
+ar(n) = b
+b = ar(n)
+INC n
+}
+END
+5(использование массива 2)
+MAIN
+1DARRAYOFUINT ar = [ 1,2,3,4,5,6 ]
+UINT n = 0
+UINT a = 0
+UINT b = 0
+WHILE (n LT 5) DO
+{
+a = ar(n)
+b = ar(n+1)
+ar(n) = b
+ar(n+1) = a
+b = ar(n)
+b = ar(0)
+a = ar(n+1)
+INC n
+}
+END
+6(использование массива 3)
+MAIN
+1DARRAYOFUINT ar = [ 1,2,3,4,5,6 ]
+UINT n = 0
+UINT a = 0
+UINT b = 0
+WHILE (n LT 3) DO
+{
+a = ar(n)
+ar(n) = ar(n+1)
+ar(n+1) = a
+a = ar (n)
+a = ar (n+1)
+INC n
+}
+n = 0 
+WHILE (n LT 6) DO
+{
+b = ar(n)
+INC n
+}
+END
+7(алгоритм выхода из лабиринта с использованием EXIT)
+[a=0] FUNCTION func (a=0,j=0,min=0)
+{UINT a = 0
+UINT min1 = 0
+BOOLEAN log = FALSE
+IF (EXIT) 
+a=1
+ELSE{
+log = FORW
+IF (j==0)
+min1 = GETF
+IF (j==1)
+min1 = GETB
+IF (j==2)
+min1 = GETR
+IF (j==3)
+min1 = GETL
+IF(min1 LT min)
+[a] = func (a,j,min1)
+ELSE{
+IF(log)
+{
+log = BACK
+log = FORW
+}
+ELSE log = BACK
+IF (j==0)
+min1 = GETF
+IF (j==1)
+min1 = GETB
+IF (j==2)
+min1 = GETR
+IF (j==3)
+min1 = GETL
+IF(min1 LT min)
+[a] = func (a,j,min1)
+ELSE{
+IF(log)
+{
+log = BACK
+log = RIGHT
+}
+ELSE log = LEFT
+IF (j==0)
+min1 = GETF
+IF (j==1)
+min1 = GETB
+IF (j==2)
+min1 = GETR
+IF (j==3)
+min1 = GETL
+IF(min1 LT min)
+[a] = func (a,j,min1)
+ELSE{
+IF(log)
+{
+log = BACK
+log = FORW
+}
+ELSE log =BACK
+IF (j==0)
+min1 = GETF
+IF (j==1)
+min1 = GETB
+IF (j==2)
+min1 = GETR
+IF (j==3)
+min1 = GETL
+IF(min1 LT min)
+[a] = func (a,j,min1)
+}
+}
+}
+}
+}
+MAIN
+UINT a = 0
+1DARRAYOFUINT ar = [ 0,0,0,0 ]
+ar(0)=GETF
+ar(1)=GETB
+ar(2)=GETR
+ar(3)=GETL
+UINT min = 10000
+UINT i = 0
+UINT j = 0
+BOOLEAN log = FALSE
+WHILE (i LT 4) DO
+{
+IF(ar(i) LT min)
+{
+min = ar(i)
+j = i
+}
+INC i
+}
+[a] = func (a,j,min)
+END
+8(возможность передачи массива в функцию)
+[a=0] FUNCTION func (b = 0)
+{EXTEND1 b 1
+}
+MAIN
+1DARRAYOFUINT ar = [0,0,0,0]
+UINT a = 0
+[a] = func(ar)
+a = ar(4) + a
+END
+9(передача пустых параметров в ф-цию)
+[a=0] FUNCTION func (a1=0,b1=5,c1=2)
+{UINT a = a1+b1+c1
+}
+MAIN
+UINT a = 0
+UINT b = 0
+UINT c = 0
+[a] = func(a,,)
+END
+10(тест синт ошибок)
+MAIN
+UINT = 0
+1DARRAYOFUINT ar = (0,0,0,0)
+UINT a = ar(+)
+a = SIZE1 213
+END
+11(алгоритм поиска выхода)
+[a=0] FUNCTION func (a=0,j=0,min=0)
+{UINT a = 0
+UINT min1 = 0
+BOOLEAN log = FALSE
+IF (min == 1) 
+a=1
+ELSE{
+log = FORW
+IF (j==0)
+min1 = GETF
+IF (j==1)
+min1 = GETB
+IF (j==2)
+min1 = GETR
+IF (j==3)
+min1 = GETL
+IF(min1 LT min)
+[a] = func (a,j,min1)
+ELSE{
+IF(log)
+{
+log = BACK
+log = FORW
+}
+ELSE log = BACK
+IF (j==0)
+min1 = GETF
+IF (j==1)
+min1 = GETB
+IF (j==2)
+min1 = GETR
+IF (j==3)
+min1 = GETL
+IF(min1 LT min)
+[a] = func (a,j,min1)
+ELSE{
+IF(log)
+{
+log = BACK
+log = RIGHT
+}
+ELSE log = LEFT
+IF (j==0)
+min1 = GETF
+IF (j==1)
+min1 = GETB
+IF (j==2)
+min1 = GETR
+IF (j==3)
+min1 = GETL
+IF(min1 LT min)
+[a] = func (a,j,min1)
+ELSE{
+IF(log)
+{
+log = BACK
+log = FORW
+}
+ELSE log =BACK
+IF (j==0)
+min1 = GETF
+IF (j==1)
+min1 = GETB
+IF (j==2)
+min1 = GETR
+IF (j==3)
+min1 = GETL
+IF(min1 LT min)
+[a] = func (a,j,min1)
+}
+}
+}
+}
+}
+MAIN
+UINT a = 0
+1DARRAYOFUINT ar = [ 0,0,0,0 ]
+ar(0)=GETF
+ar(1)=GETB
+ar(2)=GETR
+ar(3)=GETL
+UINT min = 3000000
+UINT i = 0
+UINT j = 0
+BOOLEAN log = FALSE
+WHILE (i LT 4) DO
+{
+IF(ar(i) LT min)
+{
+min = ar(i)
+j = i
+}
+INC i
+}
+IF(min LT 3000000)
+[a] = func (a,j,min)
+END
+12(тест синт ошибок)
+[a = 0] FUNCTION func (b=0)
+{ UINT a = 5
+}
+MAIN
+UINT = 0
+1DARRAYOFUINT ar = (0,0,0,0)
+UINT a = ar(+)
+a = SIZE1 
+[a] = func (_)
+END
+13(возможности массивов)
+MAIN
+UINT a1 = 20
+2DARRAYOFUINT ar = [10[1,2,3];20[4,5,6];30[8,9,10];a1[a1,a1+1,a1+2]]
+2DARRAYOFBOOL log = [TRUE OR FALSE[TRUE,FALSE];FALSE[TRUE,TRUE,NOT TRUE,TRUE OR FALSE]]
+UINT a = ar (3,2)
+BOOLEAN l = log(1,3)
+END
+14(5 синт ошибок)
+[a = 0] FUNCTION func (b=0)
+{ UINT a = 5
+}
+MAIN
+UINT - = 0
+1DARRAYOFUINT ar = (0,0,0,0)
+UINT a = ar(+)
+a = UINT
+[b] = func(-)
+END

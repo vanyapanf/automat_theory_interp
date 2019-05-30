@@ -1,0 +1,9 @@
+[a=0] FUNCTION func (a1=0,b1=5,c1=2)
+{UINT a = a1+b1+c1
+}
+MAIN
+UINT a = 0
+UINT b = 0
+UINT c = 0
+[a] = func(a,,)
+END
